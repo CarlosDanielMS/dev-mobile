@@ -15,20 +15,6 @@ O app consome uma **API** para listar eventos, exibir detalhes, estatísticas e 
 
 ---
 
-## 📂 Estrutura do Projeto
-
-O núcleo do app está no diretório `src/`, organizado para garantir **escalabilidade** e **manutenção**.
-
-src/
-├── api/ # Comunicação com a API
-│ └── apiService.ts
-├── components/ # Componentes reutilizáveis
-├── hooks/ # Hooks customizados
-├── screens/ # Telas principais do app
-└── types/ # Tipagens TypeScript
-
-markdown
-Copiar código
 
 ### 🔹 Destaques
 
@@ -70,7 +56,7 @@ Copiar código
 
 1. **Clone o repositório**  
    ```bash
-   git clone <URL-DO-SEU-REPOSITORIO>
+   git clone https://github.com/CarlosDanielMS/dev-mobile.git
    cd <NOME-DO-PROJETO>
 Instale as dependências
 
