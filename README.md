@@ -1,102 +1,127 @@
-Meu Evento - Aplicativo de Check-in (React Native)
-Este é um aplicativo móvel desenvolvido com React Native e Expo, projetado para gerenciar eventos e o check-in de participantes. Ele consome uma API para listar eventos, exibir detalhes e estatísticas, e permite que um operador visualize e confirme a presença dos participantes em tempo real.
+🎟️ Meu Evento - Aplicativo de Check-in
+
+Aplicativo móvel desenvolvido com React Native e Expo, projetado para gerenciar eventos e realizar o check-in de participantes em tempo real.
+O app consome uma API para listar eventos, exibir detalhes, estatísticas e confirmar presenças de forma simples e eficiente.
 
 🚀 Funcionalidades
-Listagem de Eventos: Tela inicial que exibe todos os eventos disponíveis a partir da API.
 
-Detalhes do Evento: Ao selecionar um evento, o usuário visualiza informações detalhadas como título, data, local e estatísticas (total de inscritos, presentes e ausentes).
+✔️ Listagem de Eventos – Exibe todos os eventos disponíveis.
+✔️ Detalhes do Evento – Mostra título, data, local e estatísticas.
+✔️ Lista de Participantes – Visualize todos os inscritos em cada evento.
+✔️ Busca em Tempo Real – Encontre participantes por nome, e-mail ou documento.
+✔️ Check-in Rápido – Confirme presença com apenas um toque.
 
-Lista de Participantes: Para cada evento, é possível ver a lista completa de participantes.
+📂 Estrutura do Projeto
 
-Busca em Tempo Real: Funcionalidade de busca para encontrar participantes por nome, e-mail ou documento.
+O núcleo do app está no diretório src/, organizado para garantir escalabilidade e manutenção.
 
-Check-in de Participantes: Confirmação de presença de um participante com um simples toque, atualizando seu status.
+src/
+ ├── api/           # Comunicação com a API
+ │   └── apiService.ts
+ ├── components/    # Componentes reutilizáveis
+ ├── hooks/         # Hooks customizados
+ ├── screens/       # Telas principais do app
+ └── types/         # Tipagens TypeScript
 
-📂 Estrutura do Projeto (Foco em src)
-O coração do aplicativo está no diretório src, que é organizado da seguinte forma para garantir escalabilidade e manutenção:
+🔹 Destaques
 
-src/api/
-apiService.ts: Centraliza toda a comunicação com a API externa. Ele utiliza o axios para criar um cliente pré-configurado com a BASE_URL e o token de autorização. Exporta funções assíncronas para cada endpoint, como:
+src/api/apiService.ts
+Centraliza a comunicação com a API usando axios.
 
-getEventsList(): Busca a lista de todos os eventos.
+getEventsList() → Lista de eventos
 
-getEventDetails(eventId): Retorna os detalhes de um evento específico.
+getEventDetails(eventId) → Detalhes de um evento
 
-getAttendees(eventId, query, page): Obtém a lista paginada de participantes de um evento, com suporte a busca.
+getAttendees(eventId, query, page) → Participantes (com busca e paginação)
 
-checkInAttendee(eventId, attendeeId): Realiza o check-in de um participante.
+checkInAttendee(eventId, attendeeId) → Check-in de participante
 
-src/components/
-Contém os componentes de UI reutilizáveis, que são a base para a construção das telas.
+Componentes
 
-EventListItem.tsx: Um card que exibe as informações principais de um evento na lista inicial (título, data, local e estatísticas).
+EventListItem.tsx → Card de eventos
 
-AttendeeItem.tsx: Componente para cada item da lista de participantes. Exibe o nome e e-mail e permite a ação de check-in.
+AttendeeItem.tsx → Item da lista de participantes
 
-KpiCard.tsx: Um card para exibir os indicadores chave de desempenho (KPIs) de um evento, como "Total", "Presentes" e "Ausentes".
+KpiCard.tsx → Exibe indicadores como Total, Presentes e Ausentes
 
-src/hooks/
-Hooks customizados que encapsulam lógicas reutilizáveis.
+Hooks
 
-useDebounce.ts: Um hook essencial para a funcionalidade de busca. Ele adiciona um "atraso" (debounce) na atualização do termo de busca, evitando que uma nova chamada à API seja feita a cada caractere digitado pelo usuário, melhorando a performance.
+useDebounce.ts → Otimiza buscas, evitando requisições desnecessárias
 
-src/screens/
-As telas que compõem a navegação principal do aplicativo.
+Telas
 
-EventsListScreen.tsx: A tela principal que consome o getEventsList da API para renderizar uma lista de eventos usando o componente EventListItem.
+EventsListScreen.tsx → Lista inicial de eventos
 
-EventScreen.tsx: Exibe os detalhes de um evento específico, incluindo os cards de KPI (KpiCard) e um botão que leva à lista de participantes.
+EventScreen.tsx → Detalhes do evento e KPIs
 
-AttendeesScreen.tsx: Tela que lista todos os participantes de um evento. Utiliza o hook useDebounce para a barra de busca e gerencia a paginação, o estado de carregamento e as ações de check-in.
+AttendeesScreen.tsx → Participantes + Check-in em tempo real
 
-src/types/
-api.ts: Arquivo central para as definições de tipos TypeScript usadas nas respostas da API. Garante a tipagem segura dos dados em todo o aplicativo, definindo interfaces como Event, Attendee e EventStats.
+⚙️ Tecnologias e Dependências
 
-⚙️ Configuração e Dependências
-O arquivo package.json define os scripts e as dependências do projeto.
+📦 Principais libs:
 
-Scripts Principais:
+axios
+ → Requisições HTTP
 
-npm start: Inicia o servidor de desenvolvimento do Expo.
+@react-navigation/native-stack
+ → Navegação entre telas
 
-npm run android: Inicia o app no emulador Android.
+@gorhom/bottom-sheet
+ → UI com modais
 
-npm run ios: Inicia o app no simulador iOS.
+react-native-reanimated
+ → Animações avançadas
 
-Dependências Notáveis:
+react-native-gesture-handler
+ → Gestos fluídos
 
-axios: Para as requisições HTTP à API.
+▶️ Como Rodar o Projeto
 
-@react-navigation/native-stack: Para a navegação baseada em pilha entre as telas.
-
-@gorhom/bottom-sheet: Utilizado para componentes de UI modais.
-
-react-native-reanimated: Para animações complexas.
-
-react-native-gesture-handler: Para um controle avançado de gestos.
-
-🏁 Como Rodar o Projeto
-Clone o repositório:
-
-Bash
+Clone o repositório
 
 git clone <URL-DO-SEU-REPOSITORIO>
 cd <NOME-DO-PROJETO>
-Instale as dependências:
 
-Bash
+
+Instale as dependências
 
 npm install
-Configure a API:
 
-Abra o arquivo src/api/apiService.ts.
 
-Altere a constante BASE_URL para o endereço da sua API local ou remota.
+Configure a API
 
-Insira o seu token de autenticação na constante TOKEN.
+Edite src/api/apiService.ts
 
-Inicie o servidor de desenvolvimento:
+Defina a BASE_URL da sua API
 
-Bash
+Insira seu TOKEN de autenticação
+
+Inicie o servidor de desenvolvimento
 
 npm start
+
+
+ou, se preferir rodar direto no dispositivo/emulador:
+
+npm run android
+npm run ios
+
+📊 Demonstração Visual (Sugestão)
+
+👉 Aqui você pode adicionar prints de tela ou gifs curtos mostrando:
+
+Lista de eventos
+
+Detalhes com KPIs
+
+Tela de participantes + check-in
+
+✨ Diferenciais
+
+Interface leve e intuitiva 🖥️
+
+Check-in em tempo real 🔄
+
+Otimização com hooks customizados ⚡
+
+Código limpo e organizado para fácil manutenção 📌
