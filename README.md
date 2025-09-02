@@ -1,50 +1,102 @@
-# Welcome to your Expo app 👋
+Meu Evento - Aplicativo de Check-in (React Native)
+Este é um aplicativo móvel desenvolvido com React Native e Expo, projetado para gerenciar eventos e o check-in de participantes. Ele consome uma API para listar eventos, exibir detalhes e estatísticas, e permite que um operador visualize e confirme a presença dos participantes em tempo real.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+🚀 Funcionalidades
+Listagem de Eventos: Tela inicial que exibe todos os eventos disponíveis a partir da API.
 
-## Get started
+Detalhes do Evento: Ao selecionar um evento, o usuário visualiza informações detalhadas como título, data, local e estatísticas (total de inscritos, presentes e ausentes).
 
-1. Install dependencies
+Lista de Participantes: Para cada evento, é possível ver a lista completa de participantes.
 
-   ```bash
-   npm install
-   ```
+Busca em Tempo Real: Funcionalidade de busca para encontrar participantes por nome, e-mail ou documento.
 
-2. Start the app
+Check-in de Participantes: Confirmação de presença de um participante com um simples toque, atualizando seu status.
 
-   ```bash
-   npx expo start
-   ```
+📂 Estrutura do Projeto (Foco em src)
+O coração do aplicativo está no diretório src, que é organizado da seguinte forma para garantir escalabilidade e manutenção:
 
-In the output, you'll find options to open the app in a
+src/api/
+apiService.ts: Centraliza toda a comunicação com a API externa. Ele utiliza o axios para criar um cliente pré-configurado com a BASE_URL e o token de autorização. Exporta funções assíncronas para cada endpoint, como:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+getEventsList(): Busca a lista de todos os eventos.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+getEventDetails(eventId): Retorna os detalhes de um evento específico.
 
-## Get a fresh project
+getAttendees(eventId, query, page): Obtém a lista paginada de participantes de um evento, com suporte a busca.
 
-When you're ready, run:
+checkInAttendee(eventId, attendeeId): Realiza o check-in de um participante.
 
-```bash
-npm run reset-project
-```
+src/components/
+Contém os componentes de UI reutilizáveis, que são a base para a construção das telas.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+EventListItem.tsx: Um card que exibe as informações principais de um evento na lista inicial (título, data, local e estatísticas).
 
-## Learn more
+AttendeeItem.tsx: Componente para cada item da lista de participantes. Exibe o nome e e-mail e permite a ação de check-in.
 
-To learn more about developing your project with Expo, look at the following resources:
+KpiCard.tsx: Um card para exibir os indicadores chave de desempenho (KPIs) de um evento, como "Total", "Presentes" e "Ausentes".
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+src/hooks/
+Hooks customizados que encapsulam lógicas reutilizáveis.
 
-## Join the community
+useDebounce.ts: Um hook essencial para a funcionalidade de busca. Ele adiciona um "atraso" (debounce) na atualização do termo de busca, evitando que uma nova chamada à API seja feita a cada caractere digitado pelo usuário, melhorando a performance.
 
-Join our community of developers creating universal apps.
+src/screens/
+As telas que compõem a navegação principal do aplicativo.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+EventsListScreen.tsx: A tela principal que consome o getEventsList da API para renderizar uma lista de eventos usando o componente EventListItem.
+
+EventScreen.tsx: Exibe os detalhes de um evento específico, incluindo os cards de KPI (KpiCard) e um botão que leva à lista de participantes.
+
+AttendeesScreen.tsx: Tela que lista todos os participantes de um evento. Utiliza o hook useDebounce para a barra de busca e gerencia a paginação, o estado de carregamento e as ações de check-in.
+
+src/types/
+api.ts: Arquivo central para as definições de tipos TypeScript usadas nas respostas da API. Garante a tipagem segura dos dados em todo o aplicativo, definindo interfaces como Event, Attendee e EventStats.
+
+⚙️ Configuração e Dependências
+O arquivo package.json define os scripts e as dependências do projeto.
+
+Scripts Principais:
+
+npm start: Inicia o servidor de desenvolvimento do Expo.
+
+npm run android: Inicia o app no emulador Android.
+
+npm run ios: Inicia o app no simulador iOS.
+
+Dependências Notáveis:
+
+axios: Para as requisições HTTP à API.
+
+@react-navigation/native-stack: Para a navegação baseada em pilha entre as telas.
+
+@gorhom/bottom-sheet: Utilizado para componentes de UI modais.
+
+react-native-reanimated: Para animações complexas.
+
+react-native-gesture-handler: Para um controle avançado de gestos.
+
+🏁 Como Rodar o Projeto
+Clone o repositório:
+
+Bash
+
+git clone <URL-DO-SEU-REPOSITORIO>
+cd <NOME-DO-PROJETO>
+Instale as dependências:
+
+Bash
+
+npm install
+Configure a API:
+
+Abra o arquivo src/api/apiService.ts.
+
+Altere a constante BASE_URL para o endereço da sua API local ou remota.
+
+Insira o seu token de autenticação na constante TOKEN.
+
+Inicie o servidor de desenvolvimento:
+
+Bash
+
+npm start
