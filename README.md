@@ -58,59 +58,44 @@ O app consome uma **API** para listar eventos, exibir detalhes, estatísticas e 
    ```bash
    git clone https://github.com/CarlosDanielMS/dev-mobile.git
    cd <NOME-DO-PROJETO>
-Instale as dependências
 
-bash
-Copiar código
+   
+## ⚙️ Instalação e Configuração
+
+### 📦 1. Instale as dependências
+```bash
 npm install
-Configure a API
+🔑 2. Configure a API
+Abra o arquivo src/api/apiService.ts e edite:
 
-Edite src/api/apiService.ts
+Defina a constante BASE_URL com o endereço da sua API
 
-Defina a BASE_URL da sua API
+Insira o seu TOKEN de autenticação
 
-Insira seu TOKEN de autenticação
-
-Inicie o servidor de desenvolvimento
-
+▶️ 3. Inicie o servidor de desenvolvimento
 bash
 Copiar código
 npm start
-ou, se preferir rodar direto no dispositivo/emulador:
-
+📱 4. Rodar no dispositivo ou emulador
 bash
 Copiar código
 npm run android
 npm run ios
 📊 Demonstração Visual
-👉 Aqui você pode adicionar prints de tela ou gifs curtos mostrando:
+👉 Adicione aqui prints de tela ou GIFs curtos mostrando:
 
-Lista de eventos
+🗓️ Lista de eventos
 
-Detalhes com KPIs
+📈 Detalhes com KPIs
 
-Tela de participantes + check-in
+✅ Tela de participantes com check-in em tempo real
 
-✨ Diferenciais
-Interface leve e intuitiva 🖥️
+✨ Diferenciais do Projeto
+🖥️ Interface leve e intuitiva para fácil uso em qualquer dispositivo
 
-Check-in em tempo real 🔄
+🔄 Check-in em tempo real, garantindo agilidade no processo
 
-Otimização com hooks customizados ⚡
+⚡ Hooks customizados para otimização de buscas e performance
 
-Código limpo e organizado para fácil manutenção 📌
+📌 Código limpo e organizado, facilitando manutenção e escalabilidade
 
-yaml
-Copiar código
-
----
-
-Quer que eu já crie também um **banner visual pronto (estilo profissional, com título e ícones)** para você colocar no topo desse `README.md`?
-
-
-
-
-
-
-
-Perguntar ao ChatGPT
